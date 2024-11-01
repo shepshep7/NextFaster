@@ -70,13 +70,13 @@ export default async function Page(props: {
   return (
     <div className="container mx-auto p-4">
       {finalCount > 0 ? (
-        <h1 className="mb-2 border-b-2 text-sm font-bold">
+        <h1 className="mb-4 border-b-2 text-sm font-bold">
           {finalCount} {finalCount === 1 ? "Product" : "Products"}
         </h1>
       ) : (
         <p>No products for this subcategory</p>
       )}
-      <div className="flex flex-row flex-wrap gap-2">
+      <div className="flex flex-col gap-4 sm:grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {products.map((product) => (
           <ProductLink
             key={product.name}
