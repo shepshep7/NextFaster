@@ -10,8 +10,8 @@ export function getProductLinkImageProps(
   productName: string,
 ) {
   return getImageProps({
-    width: 48,
-    height: 48,
+    width: 160,
+    height: 120,
     quality: 65,
     src: imageUrl,
     alt: `A small picture of ${productName}`,
@@ -27,13 +27,12 @@ export function ProductLink(props: {
 }) {
   const { category_slug, subcategory_slug, product, imageUrl } = props;
 
-  // prefetch the main image for the product page, if this is too heavy
-  // we could only prefetch the first few cards, then prefetch on hover
+  // Update prefetch dimensions to match new card size
   const prefetchProps = getImageProps({
-    height: 256,
+    height: 240,
     quality: 80,
-    width: 256,
-    src: imageUrl ?? "/placeholder.svg?height=64&width=64",
+    width: 320,
+    src: imageUrl ?? "/placeholder.svg?height=120&width=160",
     alt: `A small picture of ${product.name}`,
   });
   useEffect(() => {
@@ -55,27 +54,30 @@ export function ProductLink(props: {
   return (
     <Link
       prefetch={true}
-      className="group flex h-[130px] w-full flex-row border px-4 py-2 hover:bg-gray-100 sm:w-[250px]"
+      className="group flex h-[120px] w-full flex-row border hover:bg-gray-100 sm:w-[400px]"
       href={`/products/${category_slug}/${subcategory_slug}/${product.slug}`}
     >
-      <div className="py-2">
+      <div className="relative flex h-[118px] w-[160px] flex-shrink-0 items-center justify-center bg-white p-3">
         <NextImage
           loading={props.loading}
           decoding="sync"
-          src={imageUrl ?? "/placeholder.svg?height=48&width=48"}
+          src={imageUrl ?? "/placeholder.svg?height=120&width=160"}
           alt={`A small picture of ${product.name}`}
-          width={48}
-          height={48}
+          width={160}
+          height={120}
           quality={65}
-          className="h-auto w-12 flex-shrink-0 object-cover"
+          className="h-auto max-h-[112px] w-auto max-w-[154px] object-contain"
         />
       </div>
-      <div className="px-2" />
-      <div className="h-26 flex flex-grow flex-col items-start py-2">
-        <div className="text-sm font-medium text-gray-700 group-hover:underline">
-          {product.name}
+      <div className="flex flex-grow flex-col justify-between p-4">
+        <div>
+          <div className="text-sm font-medium text-gray-700 group-hover:underline">
+            {product.name}
+          </div>
+          <p className="mt-1 line-clamp-2 text-xs text-gray-600">
+            {product.description}
+          </p>
         </div>
-        <p className="overflow-hidden text-xs">{product.description}</p>
       </div>
     </Link>
   );
