@@ -26,7 +26,7 @@ export function WelcomeToast() {
               className="font-semibold text-accent1 hover:underline"
               target="_blank"
             >
-              Get the Source
+              Get the Source Code
             </a>
             .
           </>
