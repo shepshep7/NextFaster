@@ -14,8 +14,8 @@ import { GeistMono } from "geist/font/mono";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | NextFaster",
-    default: "NextFaster",
+    template: "%s | ServoSupplier",
+    default: "ServoSupplier",
   },
   description: "A performant site built with Next.js",
 };
@@ -55,7 +55,7 @@ export default async function RootLayout({
                   href="/"
                   className="text-4xl font-bold text-accent1"
                 >
-                  NextFaster
+                  ServoSupplier
                 </Link>
                 <div className="items flex w-full flex-row items-center justify-between gap-4">
                   <div className="mx-0 flex-grow sm:mx-auto sm:flex-grow-0">
